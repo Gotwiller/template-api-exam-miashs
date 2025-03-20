@@ -1,6 +1,6 @@
 import { searchCitiesInfo } from "./api.js";
 
-let recipes = [];
+let cityRecipes = {};
 
 export const postAddRecipe = async (request, reply) => {
   const { cityId } = request.params;
@@ -14,16 +14,21 @@ export const postAddRecipe = async (request, reply) => {
 
   try {
     const cityInfo = await searchCitiesInfo(cityId);
+
     if (!cityInfo) {
       return reply.status(404).send({ error: `City with ID ${cityId} not found.` });
     }
 
+    if (!cityRecipes[cityId]) {
+      cityRecipes[cityId] = [];
+    }
+
     const newRecipe = {
-      id: recipes.length + 1,
+      id: cityRecipes[cityId].length + 1,
       content,
     };
 
-    recipes.push(newRecipe);
+    cityRecipes[cityId].push(newRecipe);
 
     return reply.status(201).send(newRecipe);
 

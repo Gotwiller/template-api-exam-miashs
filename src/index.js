@@ -3,6 +3,7 @@ import Fastify from 'fastify'
 import { submitForReview } from './submission.js'
 import { getCitiesInfos } from "./getCitiesInfos.js";
 import {postAddRecipe} from "./postAddRecipe.js";
+import {deleteRecipe} from "./deleteRecipe.js";
 
 const fastify = Fastify({
   logger: true,
@@ -10,6 +11,8 @@ const fastify = Fastify({
 
 fastify.get("/cities/:cityId/infos", getCitiesInfos);
 fastify.post("/cities/:cityId/recipes", postAddRecipe);
+fastify.delete("/cities/:cityId/recipes/:recipeId", deleteRecipe);
+
 fastify.listen(
   {
     port: process.env.PORT || 3000,
