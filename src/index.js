@@ -1,10 +1,14 @@
 import 'dotenv/config'
 import Fastify from 'fastify'
 import { submitForReview } from './submission.js'
+import { getCitiesInfos } from "./getCitiesInfos.js";
+
 
 const fastify = Fastify({
   logger: true,
 })
+
+fastify.get("/cities/:cityId/infos", getCitiesInfos);
 
 fastify.listen(
   {
