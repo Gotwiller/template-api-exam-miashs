@@ -1,6 +1,6 @@
 import { searchCitiesInfo } from "./api.js";
 
-let cityRecipes = {};  // Objet pour stocker les recettes par ville
+let cityRecipes = {};  
 
 export const deleteRecipe = async (request, reply) => {
   const { cityId, recipeId } = request.params;
