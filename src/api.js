@@ -8,7 +8,7 @@ const getHeaders = () => {
     };
 };
 
-  export const searchCitiesInfo = async (query) => {
+export const searchCitiesInfo = async (query) => {
     const headers = getHeaders();
   
     const response = await fetch(
@@ -60,4 +60,3 @@ const getHeaders = () => {
       recipes: recipes,
     };
   };
-  
